@@ -11,6 +11,11 @@ Project done during **Full Stack Software Engineering studies** at **ALX Africa*
 * Scripts written in Bash 4.3.11(1)
 
 * Tested on Ubuntu 20.04 LTS
+
+## Files
+
+All of the following files are scripts:
+
 | Filename | Description |
 
 | -------- | ----------- |
