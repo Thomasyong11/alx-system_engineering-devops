@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #Program that prints FizzBuzz sequence
-for i in {1..100}
+for num in {1..100}
 do
     if (( num % 3 == && num % 5 == 0 ))
     then
