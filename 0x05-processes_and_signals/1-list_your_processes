@@ -4,7 +4,7 @@
 # Display a user-oriented format
 # Show process hierarchy
 
-echo "PID   USER      %CPU %MEM COMMAND"
+echo "USER   PID   TTY     %CPU %MEM COMMAND"
 echo "----------------------------------"
 
 ps axjf | awk '{ printf "%-5s %-10s %-5s %-5s %s\n", $1, $3, $4, $5, $9 }'
