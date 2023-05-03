@@ -1,15 +1,14 @@
 #!/usr/bin/env ruby
 
-pattern = /School/
-
 if ARGV.length != 1
-  puts "Usage: ./0-simply_match_school.rb <string>"
-  exit(1)
+  puts "Usage: #{__FILE__} <string>"
+  exit 1
 end
 
-string = ARGV[0]
-if pattern.match(string)
-  puts "Match found: #{pattern.match(string)}"
+str = ARGV[0]
+if str.match?(/\bSchool\b/)
+  puts "Match found: #{str}"
 else
-  puts "No match found."
+  puts "No match found"
 end
+
