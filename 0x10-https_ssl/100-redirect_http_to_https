@@ -33,19 +33,19 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend adjamy-frontend
+frontend www-http
         bind *:80
         mode http
         http-request redirect scheme https code 301 unless { ssl_fc }
         http-request set-header X_Forwarded-Proto http
-        default_backend akoatem-backend
+        default_backend www-backend
 
-frontend adjamy-frontend-https
+frontend www-https
         bind *:443 ssl crt /etc/haproxy/certs/adjamy.tech.pem
         http-request set-header X-Forwarded-Proto https
-        default_backend akoatem-backend
+        default_backend www-backend
 
-backend adjamy-backend
+backend www-backend
         balance roundrobin
         server 106489-web-01 100.26.18.49:80 check
         server 106489-web-02 107.23.102.185:80 check
