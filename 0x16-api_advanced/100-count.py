@@ -10,22 +10,21 @@ import sys
 
 def add_title(dictionary, hot_posts):
     """ Adds item into a list """
-    if len(hot_posts) == 0:
+     if len(hot_posts) == 0:
         return
 
     title = hot_posts[0]['data']['title'].split()
     for word in title:
+        word_lower = word.lower()  # Convert the word to lowercase
         for key in dictionary.keys():
-            c = re.compile("^{}$".format(key), re.I)
-            if c.findall(word):
+            if word_lower == key.lower():  # Use case-insensitive comparison
                 dictionary[key] += 1
-    hot_posts.pop(0)
-    add_title(dictionary, hot_posts)
+    add_title(dictionary, hot_posts[1:])  # Pass the rest of the list
 
 
 def recurse(subreddit, dictionary, after=None):
     """ Queries to Reddit API """
-    u_agent = 'Mozilla/5.0'
+     u_agent = 'Mozilla/5.0'
     headers = {
         'User-Agent': u_agent
     }
@@ -47,10 +46,8 @@ def recurse(subreddit, dictionary, after=None):
     hot_posts = dic['data']['children']
     add_title(dictionary, hot_posts)
     after = dic['data']['after']
-    if not after:
-        return
-    recurse(subreddit, dictionary, after=after)
-
+    if after:
+        recurse(subreddit, dictionary, after=after)
 
 def count_words(subreddit, word_list):
     """ Init function """
